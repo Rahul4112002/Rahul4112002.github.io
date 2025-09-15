@@ -3,701 +3,687 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rahul Chauhan | Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Rahul Chauhan | AI & Backend Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0d0d1a;
+            --bg-card: #1a1a2e;
+            --primary-accent: #e02f6b;
+            --secondary-accent: #00c4ff;
+            --text-light: #e0e0e0;
+            --text-medium: #a0a0c0;
+            --text-dark: #1a1a2e;
+            --gradient: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-card);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-accent);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-accent);
+        }
+
+        .section-header h2 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        .underline {
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        /* Motion Animations */
+        @keyframes floatAnimation {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(1turn); }
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: radial-gradient(circle, rgba(26, 26, 46, 0.9) 0%, var(--bg-dark) 70%);
+        }
+        
+        .hero-image {
+             animation: floatAnimation 6s ease-in-out infinite;
+        }
+        
+        .image-wrapper {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    aspect-ratio: 1;
+}
+        .image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            z-index: 5;
+            background: conic-gradient(
+                from 0deg, 
+                var(--primary-accent), 
+                var(--secondary-accent) 30%, 
+                var(--primary-accent) 60%,
+                var(--secondary-accent) 85%,
+                var(--primary-accent)
+            );
+            animation: rotate 4s linear infinite;
+            transform: translate(-50%, -50%);
+        }
+        .image-wrapper::after {
+            content: '';
+            position: absolute;
+            z-index: 10;
+            inset: 6px; /* Border thickness */
+            background: var(--bg-card);
+            border-radius: 50%;
+        }
+
+        .hero-image img {
+    z-index: 20;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+        
+        .primary-btn {
+            background: var(--gradient);
+            transition: all 0.3s ease;
+        }
+        .primary-btn:hover {
+             box-shadow: 0 0 20px var(--primary-accent);
+             transform: translateY(-3px);
+        }
+        
+        .secondary-btn {
+            border: 2px solid var(--secondary-accent);
+            color: var(--secondary-accent);
+             transition: all 0.3s ease;
+        }
+        .secondary-btn:hover {
+            background-color: var(--secondary-accent);
+            color: var(--text-dark);
+            box-shadow: 0 0 20px var(--secondary-accent);
+            transform: translateY(-3px);
+        }
+
+        .social-icons a {
+            color: var(--text-medium);
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-accent);
+            transform: scale(1.2);
+        }
+        
+        /* Skills Section */
+        .skill-item {
+            background-color: var(--bg-card);
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .skill-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-accent);
+        }
+
+        /* Projects Section */
+        .project-card {
+            background-color: var(--bg-card);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            border: 1px solid transparent;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: var(--primary-accent);
+        }
+        .project-img img {
+            transition: transform 0.4s ease;
+        }
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
+        }
+
+        /* Experience Section */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--bg-card);
+            top: 20px;
+            bottom: -20px;
+            left: 10px;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 10px;
+            transform: translateX(-50%);
+            width: 22px;
+            height: 22px;
+            background: var(--gradient);
+            border-radius: 50%;
+            border: 4px solid var(--bg-dark);
+        }
+        
+        /* Scroll to top button */
+        #scrollToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: none;
+            cursor: pointer;
+            z-index: 1000;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        #scrollToTop:hover {
+            box-shadow: 0 0 15px var(--primary-accent);
+        }
+        
+        /* Header */
+        header {
+            background: rgba(13, 13, 26, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+    </style>
 </head>
-<body>
+<body class="bg-gray-900 text-gray-100">
+
     <!-- Header with Navigation -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <h1>Portfo<span>lio</span><span>.</span></h1>
+    <header class="sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="logo text-3xl font-bold">
+                <a href="#home"><h1>Portfo<span class="text-pink-500">lio</span><span class="text-cyan-400">.</span></h1></a>
             </div>
-            <nav id="navbar">
-                <ul>
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+            <nav id="navbar" class="hidden md:flex space-x-8 text-lg">
+                <a href="#home" class="hover:text-pink-500 transition duration-300">Home</a>
+                <a href="#about" class="hover:text-pink-500 transition duration-300">About</a>
+                <a href="#skills" class="hover:text-pink-500 transition duration-300">Skills</a>
+                <a href="#projects" class="hover:text-pink-500 transition duration-300">Projects</a>
+                <a href="#experience" class="hover:text-pink-500 transition duration-300">Experience</a>
+                <a href="#certifications" class="hover:text-pink-500 transition duration-300">Certifications</a>
+                <a href="#contact" class="hover:text-pink-500 transition duration-300">Contact</a>
             </nav>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
+             <div class="md:hidden">
+                <button id="hamburger" class="text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <div class="theme-toggle">
-                <i class="fas fa-moon"></i>
-            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 bg-opacity-90">
+             <a href="#home" class="block py-2 px-4 text-sm hover:bg-gray-700">Home</a>
+             <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-700">About</a>
+             <a href="#skills" class="block py-2 px-4 text-sm hover:bg-gray-700">Skills</a>
+             <a href="#projects" class="block py-2 px-4 text-sm hover:bg-gray-700">Projects</a>
+             <a href="#experience" class="block py-2 px-4 text-sm hover:bg-gray-700">Experience</a>
+             <a href="#certifications" class="block py-2 px-4 text-sm hover:bg-gray-700">Certifications</a>
+             <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-700">Contact</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-<section id="home" class="hero">
-    <div class="container">
-        <div class="hero-wrapper">
-            <div class="hero-content">
-                <h1>Hi, I'm <span>Rahul Chauhan</span></h1>
-                <h2>AI & Data Science Enthusiast | Backend Developer</h2>
-                <p>I build intelligent, responsive web apps using Python, Django, and AI/ML frameworks for real-world impact.</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn primary-btn">Contact Me</a>
-                    <a href="#projects" class="btn secondary-btn">View Projects</a>
-                </div>
-                <div class="social-icons">
-                    <a href="https://github.com/Rahul4112002" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/rahul-chauhan-932522230" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:rahulchauhan4708@gmail.com"><i class="fas fa-envelope"></i></a>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero min-h-screen flex items-center overflow-hidden">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="hero-content md:w-1/2 text-center md:text-left mb-10 md:mb-0 reveal">
+                        <h1 class="text-5xl md:text-7xl font-bold mb-4">Hi, I'm <span class="text-pink-500">Rahul Chauhan</span></h1>
+                        <h2 class="text-2xl md:text-3xl font-light mb-6 text-cyan-400">AI & Backend Engineer</h2>
+                        <p class="text-lg text-gray-400 mb-8">I build intelligent, responsive web apps using Python, Django, and AI/ML frameworks for real-world impact.</p>
+                        <div class="hero-buttons flex justify-center md:justify-start space-x-4 mb-8">
+                            <a href="#contact" class="primary-btn text-white font-bold py-3 px-8 rounded-full shadow-lg">Contact Me</a>
+                            <a href="#projects" class="secondary-btn font-bold py-3 px-8 rounded-full shadow-lg">View Projects</a>
+                        </div>
+                        <div class="social-icons flex justify-center md:justify-start space-x-6 text-3xl">
+                            <a href="https://github.com/Rahul4112002" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="https://linkedin.com/in/rahul-chauhan-932522230" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:rahulchauhan4708@gmail.com"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <div class="hero-image md:w-1/2 flex justify-center items-center relative reveal">
+                         <div class="image-wrapper w-80 h-80 md:w-[450px] md:h-[450px]">
+                             <img src="image3.png" alt="AI Engineer Icon" class="relative w-full h-full object-contain p-8 z-20">
+                         </div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="hero-shape"></div>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-
-<!-- About Section -->
-<section id="about" class="about">
-    <div class="container">
-        <div class="section-header">
-            <h2>About Me</h2>
-            <div class="underline"></div>
-        </div>
-        <div class="about-content">
-            <div class="about-image">
-                <div class="image-container">
-                    <div class="image-shape"></div>
+        <!-- About Section -->
+        <section id="about" class="about py-20">
+            <div class="container mx-auto px-6 reveal">
+                <div class="section-header text-center mb-12">
+                    <h2 class="text-4xl font-bold">About Me</h2>
+                    <div class="underline"></div>
                 </div>
-            </div>
-            <div class="about-text">
-                <h3>AI & Backend Engineer with a Passion for Intelligent Systems</h3>
-                <p>I’m a highly motivated AI and Backend Engineer with strong expertise in Python, Django, Flask, and Machine Learning. I build scalable web applications that combine smart AI models with solid backend architecture.</p>
-                <p>Currently pursuing a B.Tech in Artificial Intelligence and Data Science at TCET, Mumbai (CGPA 9.38). I love creating solutions that make data-driven decisions and provide real value to users.</p>
-                <div class="about-details">
-                    <div class="detail">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Mumbai, Maharashtra, India</span>
-                    </div>
-                    <div class="detail">
-                        <i class="fas fa-phone"></i>
-                        <span>+91-8828489397</span>
-                    </div>
-                    <div class="detail">
-                        <i class="fas fa-envelope"></i>
-                        <span>rahulchauhan4708@gmail.com</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Skills Section -->
-<section id="skills" class="skills">
-    <div class="container">
-        <div class="section-header">
-            <h2>My Skills</h2>
-            <div class="underline"></div>
-        </div>
-        <div class="skills-content">
-            <!-- Programming Languages -->
-            <div class="skills-category">
-                <h3>Programming Languages</h3>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fab fa-python"></i>
-                        </div>
-                        <h4>Python</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="about-image md:w-1/3">
+                        <div class="image-container relative w-full h-full flex items-center justify-center">
+                            <div class="image-shape absolute w-full h-full bg-gradient-to-br from-pink-500 to-cyan-400 rounded-lg transform -rotate-6"></div>
+                            <img src="image1.png" alt="About Rahul" class="relative rounded-lg shadow-2xl w-full z-10">
                         </div>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h4>C++</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h4>SQL</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
+                    <div class="about-text md:w-2/3">
+                        <h3 class="text-3xl font-bold mb-4 text-cyan-400">AI & Backend Engineer with a Passion for Intelligent Systems</h3>
+                        <p class="text-lg text-gray-400 mb-4">I’m a highly motivated AI and Backend Engineer with strong expertise in Python, Django, Flask, and Machine Learning. I build scalable web applications that combine smart AI models with solid backend architecture.</p>
+                        <p class="text-lg text-gray-400 mb-6">Currently pursuing a B.Tech in Artificial Intelligence and Data Science at TCET, Mumbai (CGPA 9.38). I love creating solutions that make data-driven decisions and provide real value to users.</p>
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg">
+                            <div class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-pink-500"></i><span>Mumbai, Maharashtra</span></div>
+                            <div class="flex items-center gap-3"><i class="fas fa-phone text-pink-500"></i><span>+91-8828489397</span></div>
+                            <div class="flex items-center gap-3 col-span-1 md:col-span-2"><i class="fas fa-envelope text-pink-500"></i><span>rahulchauhan4708@gmail.com</span></div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Frameworks & Technologies -->
-            <div class="skills-category">
-                <h3>Frameworks & Technologies</h3>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-leaf"></i>
-                        </div>
-                        <h4>Django</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-fire"></i>
-                        </div>
-                        <h4>Flask</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h4>Machine Learning</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section id="skills" class="skills py-20 bg-gray-900">
+            <div class="container mx-auto px-6 reveal">
+                <div class="section-header text-center mb-12">
+                    <h2 class="text-4xl font-bold">My Skills</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="space-y-12">
+                    <!-- Programming Languages -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-cyan-400 text-center">Programming Languages</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div class="skill-item p-6 rounded-lg shadow-lg text-center">
+                                <div class="text-5xl mb-4 text-pink-500"><i class="fab fa-python"></i></div>
+                                <h4 class="text-xl font-bold">Python</h4>
+                            </div>
+                            <div class="skill-item p-6 rounded-lg shadow-lg text-center">
+                                <div class="text-5xl mb-4 text-pink-500"><i class="fas fa-code"></i></div>
+                                <h4 class="text-xl font-bold">C++</h4>
+                            </div>
+                            <div class="skill-item p-6 rounded-lg shadow-lg text-center">
+                                <div class="text-5xl mb-4 text-pink-500"><i class="fas fa-database"></i></div>
+                                <h4 class="text-xl font-bold">SQL</h4>
+                            </div>
                         </div>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h4>Deep Learning</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-language"></i>
-                        </div>
-                        <h4>NLP</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 70%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-code-branch"></i>
-                        </div>
-                        <h4>LangChain</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
+                     <!-- Frameworks & Technologies -->
+                    <div>
+                         <h3 class="text-2xl font-semibold mb-6 text-cyan-400 text-center">Frameworks & Technologies</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+                            <div class="skill-item p-6 rounded-lg shadow-lg text-center"><div class="text-5xl mb-4 text-pink-500"><i class="fas fa-leaf"></i></div><h4 class="text-xl font-bold">Django</h4></div>
+                            <div class="skill-item p-6 rounded-lg shadow-lg text-center"><div class="text-5xl mb-4 text-pink-500"><i class="fas fa-fire"></i></div><h4 class="text-xl font-bold">Flask</h4></div>
+                            <div class="skill-item p-6 rounded-lg shadow-lg text-center"><div class="text-5xl mb-4 text-pink-500"><i class="fas fa-brain"></i></div><h4 class="text-xl font-bold">Machine Learning</h4></div>
+                            <div class="skill-item p-6 rounded-lg shadow-lg text-center"><div class="text-5xl mb-4 text-pink-500"><i class="fas fa-robot"></i></div><h4 class="text-xl font-bold">Deep Learning</h4></div>
+                            <div class="skill-item p-6 rounded-lg shadow-lg text-center"><div class="text-5xl mb-4 text-pink-500"><i class="fas fa-language"></i></div><h4 class="text-xl font-bold">NLP</h4></div>
+                            <div class="skill-item p-6 rounded-lg shadow-lg text-center"><div class="text-5xl mb-4 text-pink-500"><i class="fas fa-code-branch"></i></div><h4 class="text-xl font-bold">LangChain</h4></div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Developer Tools -->
-            <div class="skills-category">
-                <h3>Developer Tools</h3>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h4>VS Code</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <h4>Git / GitHub</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h4>MySQL</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <h4>Jupyter Notebook</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">
-                            <i class="fas fa-file-word"></i>
-                        </div>
-                        <h4>MS Office</h4>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
+        <!-- Projects Section -->
+        <section id="projects" class="projects py-20">
+            <div class="container mx-auto px-6 reveal">
+                <div class="section-header text-center mb-12">
+                    <h2 class="text-4xl font-bold">My Projects</h2>
+                    <div class="underline"></div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Projects Section -->
-<section id="projects" class="projects">
-    <div class="container">
-        <div class="section-header">
-            <h2>My Projects</h2>
-            <div class="underline"></div>
-        </div>
-
-        <!-- Filter Buttons -->
-        <div class="projects-filter">
-            <button class="filter-btn active" data-filter="featured">Featured</button>
-            <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
-            <button class="filter-btn" data-filter="deep-learning">Deep Learning</button>
-            <button class="filter-btn" data-filter="nlp">NLP</button>
-            <button class="filter-btn" data-filter="genai">GenAI</button>
-            <button class="filter-btn" data-filter="full-stack">Full Stack</button>
-            <button class="filter-btn" data-filter="all">All</button>
-        </div>
-
-        <!-- Project Cards -->
-        <div class="projects-grid">
-
-            <!-- FEATURED Projects -->
-            <div class="project-card" data-category="genai full-stack" data-featured="true">
-                <div class="project-img">
-                    <img src="recipe.png" alt="RecipePro AI">
+                <div class="projects-filter flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
+                    <button class="filter-btn secondary-btn px-4 py-2 rounded-full text-sm active" data-filter="all">All</button>
+                    <button class="filter-btn secondary-btn px-4 py-2 rounded-full text-sm" data-filter="genai">GenAI</button>
+                    <button class="filter-btn secondary-btn px-4 py-2 rounded-full text-sm" data-filter="full-stack">Full Stack</button>
+                    <button class="filter-btn secondary-btn px-4 py-2 rounded-full text-sm" data-filter="machine-learning">Machine Learning</button>
+                    <button class="filter-btn secondary-btn px-4 py-2 rounded-full text-sm" data-filter="deep-learning">Deep Learning</button>
+                    <button class="filter-btn secondary-btn px-4 py-2 rounded-full text-sm" data-filter="nlp">NLP</button>
                 </div>
-                <div class="project-content">
-                    <h3>RecipePro.ai</h3>
-                    <div class="project-tags">
-                        <span>Django</span>
-                        <span>LangChain</span>
-                        <span>Tailwind</span>
-                        <span>Gemini</span>
-                    </div>
-                    <p>AI-powered recipe generator using Google Generative AI and LangChain for personalized cooking experiences.</p>
-                    <ul>
-                        <li>Handles 50+ recipe queries</li>
-                        <li>Optimized UI with Tailwind</li>
-                        <li>Fast load under 5s</li>
-                    </ul>
-                    <div class="project-links">
-                        <a href="https://github.com/Rahul4112002/RecipePro.ai" target="_blank" class="btn small-btn secondary-btn"><i class="fab fa-github"></i> Source Code</a>
-                    </div>
-                </div>
-            </div>
 
-            <div class="project-card" data-category="machine-learning full-stack" data-featured="true">
-                <div class="project-img">
-                    <img src="career.png" alt="CareerVision AI">
-                </div>
-                <div class="project-content">
-                    <h3>CareerVision.ai</h3>
-                    <div class="project-tags">
-                        <span>Django</span>
-                        <span>MLP Classifier</span>
-                        <span>SQLite</span>
-                        <span>Adzuna API</span>
+                <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Cards -->
+                    <div class="project-card rounded-lg" data-category="genai full-stack">
+                        <div class="project-img overflow-hidden h-56"><img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=RecipePro.ai" alt="RecipePro AI" class="w-full h-full object-cover"></div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">RecipePro.ai</h3>
+                            <div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-700 text-xs px-2 py-1 rounded">Django</span><span class="bg-gray-700 text-xs px-2 py-1 rounded">LangChain</span><span class="bg-gray-700 text-xs px-2 py-1 rounded">Gemini</span></div>
+                            <p class="text-gray-400 mb-4">AI-powered recipe generator using Google Generative AI and LangChain for personalized cooking experiences.</p>
+                            <a href="https://github.com/Rahul4112002/RecipePro.ai" target="_blank" class="primary-btn text-white text-sm font-bold py-2 px-4 rounded-full inline-block"><i class="fab fa-github"></i> Source Code</a>
+                        </div>
                     </div>
-                    <p>Career prediction platform using ML to suggest suitable jobs and real-time listings based on user inputs.</p>
                     
-                    <div class="project-links">
-                        <a href="https://github.com/Rahul4112002/CareerVision.ai" target="_blank" class="btn small-btn secondary-btn"><i class="fab fa-github"></i> Source Code</a>
+                     <div class="project-card rounded-lg" data-category="machine-learning full-stack">
+                        <div class="project-img overflow-hidden h-56"><img src="career.png" alt="CareerVision AI" class="w-full h-full object-cover"></div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">CareerVision.ai</h3>
+                            <div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-700 text-xs px-2 py-1 rounded">Django</span><span class="bg-gray-700 text-xs px-2 py-1 rounded">ML</span><span class="bg-gray-700 text-xs px-2 py-1 rounded">Adzuna API</span></div>
+                            <p class="text-gray-400 mb-4">Career prediction platform using ML to suggest suitable jobs and real-time listings based on user inputs.</p>
+                            <a href="https://github.com/Rahul4112002/CareerVision.ai" target="_blank" class="primary-btn text-white text-sm font-bold py-2 px-4 rounded-full inline-block"><i class="fab fa-github"></i> Source Code</a>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="project-card" data-category="deep-learning full-stack" data-featured="true">
-                <div class="project-img">
-                    <img src="stock.png" alt="StockVision">
-                </div>
-                <div class="project-content">
-                    <h3>StockVision</h3>
-                    <div class="project-tags">
-                        <span>Django</span>
-                        <span>LSTM</span>
-                        <span>Yahoo API</span>
-                        <span>Time Series</span>
+                    <div class="project-card rounded-lg" data-category="deep-learning full-stack">
+                        <div class="project-img overflow-hidden h-56"><img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=StockVision" alt="StockVision" class="w-full h-full object-cover"></div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">StockVision</h3>
+                            <div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-700 text-xs px-2 py-1 rounded">Django</span><span class="bg-gray-700 text-xs px-2 py-1 rounded">LSTM</span><span class="bg-gray-700 text-xs px-2 py-1 rounded">Yahoo API</span></div>
+                            <p class="text-gray-400 mb-4">Real-time stock trend forecasting platform using LSTM models and interactive chart visualizations.</p>
+                            <a href="https://github.com/Rahul4112002/StockVision" target="_blank" class="primary-btn text-white text-sm font-bold py-2 px-4 rounded-full inline-block"><i class="fab fa-github"></i> Source Code</a>
+                        </div>
                     </div>
-                    <p>Real-time stock trend forecasting platform using LSTM models and interactive chart visualizations.</p>
                     
-                    <div class="project-links">
-                        <a href="https://github.com/Rahul4112002/StockVision" target="_blank" class="btn small-btn secondary-btn"><i class="fab fa-github"></i> Source Code</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card" data-category="machine-learning">
-                <div class="project-img">
-                    <img src="parkinsons.png" alt="Parkinsons Disease Detection">
-                </div>
-                <div class="project-content">
-                    <h3>Parkinsons Disease Detection</h3>
-                    <div class="project-tags">
-                        <span>Machine Learning</span>
-                        <span>Classification</span>
-                        <span>Python</span>
-                    </div>
-                    <p>Machine learning model for detecting Parkinson's disease using multiple classification algorithms, analyzing and predicting the condition based on medical parameters.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/Rahul4112002/Parkinsons--Diseases-Detection" target="_blank" class="btn small-btn secondary-btn"><i class="fab fa-github"></i> Source Code</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card" data-category="machine-learning nlp">
-                <div class="project-img">
-                    <img src="news.png" alt="Fake News Detection">
-                </div>
-                <div class="project-content">
-                    <h3>Fake News Detection</h3>
-                    <div class="project-tags">
-                        <span>NLP</span>
-                        <span>Machine Learning</span>
-                        <span>Text Classification</span>
-                    </div>
-                    <p>Combat misinformation with this open-source project that harnesses ML techniques to classify news articles as real or fake, providing a vital tool in today's information landscape.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/Rahul4112002/Fake-News-Detection" target="_blank" class="btn small-btn secondary-btn"><i class="fab fa-github"></i> Source Code</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card" data-category="machine-learning">
-                <div class="project-img">
-                    <img src="card.png" alt="Credit Card Fraud Detection">
-                </div>
-                <div class="project-content">
-                    <h3>Credit Card Fraud Detection</h3>
-                    <div class="project-tags">
-                        <span>Random Forest</span>
-                        <span>Classification</span>
-                        <span>Data Analysis</span>
-                    </div>
-                    <p>Machine learning model to detect fraud in credit card transactions using the Random Forest classification algorithm, focusing on utilizing transaction patterns.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/Rahul4112002/CREDIT-CARD-FRAUD-DETECTION" target="_blank" class="btn small-btn secondary-btn"><i class="fab fa-github"></i> Source Code</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card" data-category="machine-learning nlp">
-                <div class="project-img">
-                    <img src="sms.png" alt="Spam SMS Detection">
-                </div>
-                <div class="project-content">
-                    <h3>Spam SMS Detection</h3>
-                    <div class="project-tags">
-                        <span>SVM</span>
-                        <span>NLP</span>
-                        <span>Text Classification</span>
-                    </div>
-                    <p>Machine learning-based spam SMS detection system using the Support Vector Machine (SVM) classifier, protecting users from spam messages and scams.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/Rahul4112002/SPAM-SMS-DETECTION" target="_blank" class="btn small-btn secondary-btn"><i class="fab fa-github"></i> Source Code</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card" data-category="machine-learning">
-                <div class="project-img">
-                    <img src="churn.png" alt="Customer Churn Prediction">
-                </div>
-                <div class="project-content">
-                    <h3>Customer Churn Prediction</h3>
-                    <div class="project-tags">
-                        <span>Random Forest</span>
-                        <span>Banking</span>
-                        <span>Predictive Analytics</span>
-                    </div>
-                    <p>Predicting whether bank customers will stay or leave using Random Forest algorithm by analyzing various customer data points and behavioral patterns.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/Rahul4112002/Customer-Churn-Prediction" target="_blank" class="btn small-btn secondary-btn"><i class="fab fa-github"></i> Source Code</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card" data-category="machine-learning">
-                <div class="project-img">
-                    <img src="fire.png" alt="Forest Fire Prediction">
-                </div>
-                <div class="project-content">
-                    <h3>Forest Fire Prediction</h3>
-                    <div class="project-tags">
-                        <span>Machine Learning</span>
-                        <span>Environmental</span>
-                        <span>Predictive Modeling</span>
-                    </div>
-                    <p>Predictive model to forecast forest fire occurrences based on environmental factors and historical data, helping with early prevention efforts.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/Rahul4112002/Forest-Fire-Precition" target="_blank" class="btn small-btn secondary-btn"><i class="fab fa-github"></i> Source Code</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card" data-category="machine-learning">
-                <div class="project-img">
-                    <img src="diabetes.png" alt="Diabetes Prediction">
-                </div>
-                <div class="project-content">
-                    <h3>Diabetes Prediction</h3>
-                    <div class="project-tags">
-                        <span>Healthcare</span>
-                        <span>Classification</span>
-                        <span>Data Analysis</span>
-                    </div>
-                    <p>Machine learning project that predicts whether a patient is diabetic or non-diabetic based on various health parameters and medical indicators.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/Rahul4112002/Diabetes-Prediction" target="_blank" class="btn small-btn secondary-btn"><i class="fab fa-github"></i> Source Code</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-    <!-- Experience Section -->
-<section id="experience" class="experience">
-    <div class="container">
-        <div class="section-header">
-            <h2>Work Experience</h2>
-            <div class="underline"></div>
-        </div>
-        <div class="timeline-container">
-            <!-- First Experience -->
-            <div class="timeline-column">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">January 2025 - February 2025</div>
-                        <h3>Artificial Intelligence & Data Analytics Intern</h3>
-                        <h4>Skills4Future Program - AICTE, Shell India Markets & Ed Foundation</h4>
-                        <p>Virtual</p>
-                        <ul class="timeline-list">
-                            <li>Completed 4-week virtual internship focused on Green Skills in AI and Data Analytics.</li>
-                            <li>Developed a Crop and Fertilizer Recommendation System using Machine Learning techniques.</li>
-                            <li>Applied data analytics principles to create environmentally sustainable agricultural solutions.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Second Experience -->
-            <div class="timeline-column">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">December 2023 - January 2024</div>
-                        <h3>Machine Learning Intern</h3>
-                        <h4>CodSoft</h4>
-                        <p>Remote</p>
-                        <ul class="timeline-list">
-                            <li>Built a Django web application to display real-time machine learning predictions.</li>
-                            <li>Processed and analyzed datasets with 10,000+ rows, optimizing feature selection and reducing preprocessing time by 30%.</li>
-                            <li>Implemented supervised and unsupervised models with TensorFlow and Scikit-learn.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</section>
-    <!-- Education Section -->
-<section id="education" class="education">
-    <div class="container">
-        <div class="section-header">
-            <h2>Education</h2>
-            <div class="underline"></div>
-        </div>
-        <div class="education-grid">
-            <div class="education-card">
-                <div class="education-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div class="education-content">
-                    <h3>B.Tech - Artificial Intelligence and Data Science</h3>
-                    <h4>Thakur College of Engineering and Technology</h4>
-                    <p>2021 - 2025</p>
-                    <p><strong>CGPA:</strong> 9.38</p>
-                    <p>Kandivali, Mumbai, India</p>
-                </div>
-            </div>
-            <div class="education-card">
-                <div class="education-icon">
-                    <i class="fas fa-school"></i>
-                </div>
-                <div class="education-content">
-                    <h3>HSC Board Examination</h3>
-                    <h4>Sardar Vallabhbhai Patel Vidyalaya</h4>
-                    <p>2020 - 2021</p>
-                    <p><strong>Percentage:</strong> 84.83%</p>
-                    <p>Bhayandar, Mumbai, India</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Certifications Section -->
-<section id="certifications" class="certifications">
-    <div class="container">
-        <div class="section-header">
-            <h2>Certifications</h2>
-            <div class="underline"></div>
-        </div>
-        <div class="certifications-grid">
-            <div class="cert-card">
-                <div class="cert-icon">
-                    <i class="fab fa-python"></i>
-                </div>
-                <h3>Python 101 for Data Science - IBM</h3>
-            </div>
-            <div class="cert-card">
-                <div class="cert-icon">
-                    <i class="fas fa-sitemap"></i>
-                </div>
-                <h3>Basics of Data Structures and Algorithms - Simplilearn</h3>
-            </div>
-            <div class="cert-card">
-                <div class="cert-icon">
-                    <i class="fab fa-python"></i>
-                </div>
-                <h3>Flask Python - Great Learning</h3>
-            </div>
-            <div class="cert-card">
-                <div class="cert-icon">
-                    <i class="fas fa-database"></i>
-                </div>
-                <h3>Data Science Masters 2.0 - PW Skills</h3>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Contact Section -->
-<section id="contact" class="contact">
-    <div class="container">
-        <div class="section-header">
-            <h2>Contact Me</h2>
-            <div class="underline"></div>
-        </div>
-        <div class="contact-content">
-            <div class="contact-info">
-                <h3>Get In Touch</h3>
-                <p>Feel free to contact me for any job opportunities or if you have any questions. I'll get back to you as soon as possible.</p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Location</h4>
-                            <p>Mumbai, Maharashtra, India</p>
+                    <div class="project-card rounded-lg" data-category="machine-learning">
+                        <div class="project-img overflow-hidden h-56"><img src="parkinsons.png" alt="Parkinsons Disease Detection" class="w-full h-full object-cover bg-white p-4"></div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">Parkinsons Detection</h3>
+                            <div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-700 text-xs px-2 py-1 rounded">ML</span><span class="bg-gray-700 text-xs px-2 py-1 rounded">Classification</span></div>
+                            <p class="text-gray-400 mb-4">ML model for detecting Parkinson's disease using multiple classification algorithms.</p>
+                            <a href="https://github.com/Rahul4112002/Parkinsons--Diseases-Detection" target="_blank" class="primary-btn text-white text-sm font-bold py-2 px-4 rounded-full inline-block"><i class="fab fa-github"></i> Source Code</a>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <p>rahulchauhan4708@gmail.com</p>
+
+                    <div class="project-card rounded-lg" data-category="machine-learning nlp">
+                        <div class="project-img overflow-hidden h-56"><img src="news.png" alt="Fake News Detection" class="w-full h-full object-cover"></div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">Fake News Detection</h3>
+                            <div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-700 text-xs px-2 py-1 rounded">NLP</span><span class="bg-gray-700 text-xs px-2 py-1 rounded">ML</span></div>
+                            <p class="text-gray-400 mb-4">Harnesses ML techniques to classify news articles as real or fake.</p>
+                            <a href="https://github.com/Rahul4112002/Fake-News-Detection" target="_blank" class="primary-btn text-white text-sm font-bold py-2 px-4 rounded-full inline-block"><i class="fab fa-github"></i> Source Code</a>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
+                    
+                    <div class="project-card rounded-lg" data-category="machine-learning">
+                        <div class="project-img overflow-hidden h-56"><img src="card.png" alt="Credit Card Fraud Detection" class="w-full h-full object-cover"></div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">Credit Card Fraud Detection</h3>
+                            <div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-700 text-xs px-2 py-1 rounded">Random Forest</span></div>
+                             <p class="text-gray-400 mb-4">ML model to detect fraud in credit card transactions using Random Forest.</p>
+                            <a href="https://github.com/Rahul4112002/CREDIT-CARD-FRAUD-DETECTION" target="_blank" class="primary-btn text-white text-sm font-bold py-2 px-4 rounded-full inline-block"><i class="fab fa-github"></i> Source Code</a>
                         </div>
-                        <div class="contact-text">
-                            <h4>Phone</h4>
-                            <p>+91-8828489397</p>
+                    </div>
+                    
+                    <div class="project-card rounded-lg" data-category="machine-learning">
+                        <div class="project-img overflow-hidden h-56"><img src="churn.png" alt="Customer Churn Prediction" class="w-full h-full object-cover"></div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">Customer Churn Prediction</h3>
+                            <div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-700 text-xs px-2 py-1 rounded">Random Forest</span></div>
+                             <p class="text-gray-400 mb-4">Predicting whether bank customers will stay or leave using Random Forest.</p>
+                            <a href="https://github.com/Rahul4112002/Customer-Churn-Prediction" target="_blank" class="primary-btn text-white text-sm font-bold py-2 px-4 rounded-full inline-block"><i class="fab fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card rounded-lg" data-category="machine-learning">
+                        <div class="project-img overflow-hidden h-56"><img src="fire.png" alt="Forest Fire Prediction" class="w-full h-full object-cover"></div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">Forest Fire Prediction</h3>
+                             <div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-700 text-xs px-2 py-1 rounded">ML</span><span class="bg-gray-700 text-xs px-2 py-1 rounded">Predictive Modeling</span></div>
+                             <p class="text-gray-400 mb-4">Predictive model to forecast forest fire occurrences based on environmental factors.</p>
+                            <a href="https://github.com/Rahul4112002/Forest-Fire-Precition" target="_blank" class="primary-btn text-white text-sm font-bold py-2 px-4 rounded-full inline-block"><i class="fab fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card rounded-lg" data-category="machine-learning">
+                        <div class="project-img overflow-hidden h-56"><img src="diabetes.png" alt="Diabetes Prediction" class="w-full h-full object-cover"></div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">Diabetes Prediction</h3>
+                             <div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-700 text-xs px-2 py-1 rounded">Healthcare</span><span class="bg-gray-700 text-xs px-2 py-1 rounded">Classification</span></div>
+                            <p class="text-gray-400 mb-4">ML project that predicts whether a patient is diabetic based on health parameters.</p>
+                            <a href="https://github.com/Rahul4112002/Diabetes-Prediction" target="_blank" class="primary-btn text-white text-sm font-bold py-2 px-4 rounded-full inline-block"><i class="fab fa-github"></i> Source Code</a>
                         </div>
                     </div>
                 </div>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/rahul-chauhan-" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/Rahul4112002" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://github.com/Rahul4112002" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="mailto:rahulchauhan4708@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </section>
+        
+        <!-- Experience Section -->
+        <section id="experience" class="experience py-20 bg-gray-900">
+            <div class="container mx-auto px-6 reveal">
+                <div class="section-header text-center mb-12">
+                    <h2 class="text-4xl font-bold">Work Experience</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="max-w-3xl mx-auto">
+                     <div class="timeline-item relative pl-8 pb-8">
+                         <div class="timeline-dot"></div>
+                         <div class="timeline-content bg-gray-800 p-6 rounded-lg shadow-lg">
+                             <div class="text-cyan-400 font-semibold mb-1">January 2025 - February 2025</div>
+                             <h3 class="text-xl font-bold text-pink-500">AI & Data Analytics Intern</h3>
+                             <h4 class="font-semibold mb-2">Skills4Future Program - AICTE & Shell India</h4>
+                             <ul class="list-disc list-inside text-gray-400 space-y-1">
+                                 <li>Completed 4-week virtual internship focused on Green Skills in AI.</li>
+                                 <li>Developed a Crop and Fertilizer Recommendation System using Machine Learning.</li>
+                                 <li>Applied data analytics for environmentally sustainable agricultural solutions.</li>
+                             </ul>
+                         </div>
+                     </div>
+                     <div class="timeline-item relative pl-8 pb-8">
+                         <div class="timeline-dot"></div>
+                         <div class="timeline-content bg-gray-800 p-6 rounded-lg shadow-lg">
+                             <div class="text-cyan-400 font-semibold mb-1">December 2023 - January 2024</div>
+                             <h3 class="text-xl font-bold text-pink-500">Machine Learning Intern</h3>
+                             <h4 class="font-semibold mb-2">CodSoft (Remote)</h4>
+                             <ul class="list-disc list-inside text-gray-400 space-y-1">
+                                 <li>Built a Django web app to display real-time machine learning predictions.</li>
+                                 <li>Processed datasets with 10,000+ rows, optimizing feature selection.</li>
+                                 <li>Implemented models with TensorFlow and Scikit-learn.</li>
+                             </ul>
+                         </div>
+                     </div>
                 </div>
             </div>
-            <div class="contact-form">
-                <h3>Send Me a Message</h3>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder="Your Name" required>
-                        <div class="error-message" id="nameError"></div>
+        </section>
+
+         <!-- Certifications Section -->
+        <section id="certifications" class="certifications py-20">
+            <div class="container mx-auto px-6 reveal">
+                <div class="section-header text-center mb-12">
+                    <h2 class="text-4xl font-bold">Certifications</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="skill-item p-6 rounded-lg shadow-lg text-center flex flex-col items-center justify-center">
+                        <div class="text-5xl mb-4 text-pink-500"><i class="fab fa-python"></i></div>
+                        <h3 class="font-semibold">Python 101 for Data Science - IBM</h3>
                     </div>
-                    <div class="form-group">
-                        <input type="email" id="email" placeholder="Your Email" required>
-                        <div class="error-message" id="emailError"></div>
+                    <div class="skill-item p-6 rounded-lg shadow-lg text-center flex flex-col items-center justify-center">
+                        <div class="text-5xl mb-4 text-pink-500"><i class="fas fa-sitemap"></i></div>
+                        <h3 class="font-semibold">Basics of DSA - Simplilearn</h3>
                     </div>
-                    <div class="form-group">
-                        <input type="text" id="subject" placeholder="Subject" required>
-                        <div class="error-message" id="subjectError"></div>
+                    <div class="skill-item p-6 rounded-lg shadow-lg text-center flex flex-col items-center justify-center">
+                        <div class="text-5xl mb-4 text-pink-500"><i class="fas fa-fire"></i></div>
+                        <h3 class="font-semibold">Flask Python - Great Learning</h3>
                     </div>
-                    <div class="form-group">
-                        <textarea id="message" placeholder="Your Message" required></textarea>
-                        <div class="error-message" id="messageError"></div>
+                    <div class="skill-item p-6 rounded-lg shadow-lg text-center flex flex-col items-center justify-center">
+                        <div class="text-5xl mb-4 text-pink-500"><i class="fas fa-database"></i></div>
+                        <h3 class="font-semibold">Data Science Masters 2.0 - PW Skills</h3>
                     </div>
-                    <button type="submit" class="btn primary-btn">Send Message</button>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact py-20 bg-gray-900">
+            <div class="container mx-auto px-6 reveal">
+                <div class="section-header text-center mb-12">
+                    <h2 class="text-4xl font-bold">Contact Me</h2>
+                    <div class="underline"></div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-12">
+                    <div class="md:w-1/2">
+                        <h3 class="text-3xl font-bold mb-4 text-cyan-400">Get In Touch</h3>
+                        <p class="text-gray-400 mb-6">Feel free to contact me for any job opportunities or if you have any questions. I'll get back to you as soon as possible.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4"><div class="text-2xl text-pink-500"><i class="fas fa-map-marker-alt"></i></div><p>Mumbai, Maharashtra, India</p></div>
+                            <div class="flex items-center gap-4"><div class="text-2xl text-pink-500"><i class="fas fa-envelope"></i></div><p>rahulchauhan4708@gmail.com</p></div>
+                            <div class="flex items-center gap-4"><div class="text-2xl text-pink-500"><i class="fas fa-phone"></i></div><p>+91-8828489397</p></div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <form id="contactForm" class="bg-gray-800 p-8 rounded-lg shadow-lg space-y-4">
+                            <div>
+                                <input type="text" id="name" placeholder="Your Name" required class="w-full bg-gray-700 text-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
+                            </div>
+                            <div>
+                                <input type="email" id="email" placeholder="Your Email" required class="w-full bg-gray-700 text-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
+                            </div>
+                             <div>
+                                <input type="text" id="subject" placeholder="Subject" required class="w-full bg-gray-700 text-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
+                            </div>
+                            <div>
+                                <textarea id="message" placeholder="Your Message" rows="5" required class="w-full bg-gray-700 text-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
+                            </div>
+                            <button type="submit" class="primary-btn w-full text-white font-bold py-3 px-8 rounded-full">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <h3>Rahul<span> Chauhan</span></h3>
-                </div>
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#education">Education</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="footer-social">
-                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Rahul Chauhan. All Rights Reserved.</p>
-            </div>
+    <footer class="bg-gray-900 py-8">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2025 Rahul Chauhan. All Rights Reserved.</p>
         </div>
     </footer>
 
     <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="scroll-to-top">
+    <button id="scrollToTop" class="hidden">
         <i class="fas fa-arrow-up"></i>
     </button>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger Menu
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            hamburger.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Smooth scroll for nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                     // Close mobile menu on click
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
 
-    <script src="script.js"></script>
+            // Reveal on Scroll
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // Project Filtering
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('primary-btn', 'text-white'));
+                    button.classList.add('primary-btn', 'text-white');
+                    const filter = button.getAttribute('data-filter');
+
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            // Make 'All' button active by default
+            document.querySelector('.filter-btn[data-filter="all"]').classList.add('primary-btn', 'text-white');
+
+
+            // Scroll to Top Button
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.style.display = 'block';
+                } else {
+                    scrollToTopBtn.style.display = 'none';
+                }
+            });
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Contact form
+             document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Replace with actual form submission logic (e.g., using fetch to send to a backend or a service like EmailJS)
+                alert('Thank you for your message! This is a demo form.');
+                this.reset();
+            });
+        });
+    </script>
 </body>
 </html>
+
